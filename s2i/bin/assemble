@@ -1,0 +1,18 @@
+cp -R /tmp/src /opt/app-root/
+
+chown -R 1001:0 /opt/app-root/
+ls /tmp/src
+cd /opt/app-root/src && ls
+
+
+cd /opt/app-root/src && mvn clean package -Dspring.profiles.active=dev -Dmaven.test.skip=true
+
+echo "installation started...........------------------"
+
+# cd /usr/src/clinicaltrial_UX && npm rebuild node-sass
+
+echo "installed...........------------------"
+
+cp /opt/app-root/src/target/clinicaltrial*.war $CATALINA_HOME/webapps/clinical-trial.war
+
+echo "Wars copied to Catalina_HOME...........------------------"
